@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100vw;
+    height: 10vh;
+}
+
+h1 {
+    padding: 3px;
+}
+
+.roomName {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 3px;
+}

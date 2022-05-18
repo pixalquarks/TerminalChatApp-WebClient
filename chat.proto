@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package pixalquarks.terminalChatServer;
+
+option go_package = "./chatserver";
+
+import "google/protobuf/empty.proto";
+
+message FromClient {
+  string name = 1;
+  string body = 2;
+}
+
+message FromServer {
+  string name = 1;
+  string body = 2;
+}
+
+message Client {
+  string name = 1;
+  int32 id = 2;
+}
+
+message Clients {
+  repeated Client client = 1;
+  uint32 count = 2;
+}
+
+message Command {
+  uint32 type = 1;
+  string value = 2;
+  string client = 3;
+}
+
+message ClientName {
+  string name = 1;
+}
+
+message ClientNameResponse {
+  bool exists = 1;
+  int32 id = 2;
+}
+
+message StreamRequest {
+  int32 id = 1;
+}
+
+service Services {
+  rpc ChatService(StreamRequest) returns (stream FromServer) {};
+  rpc SendMessage(FromClient) returns (google.protobuf.Empty) {};
+  rpc CommandService (Command) returns (google.protobuf.Empty) {};
+  rpc GetClients(google.protobuf.Empty) returns (Clients) {};
+  rpc CreateClient(ClientName) returns (ClientNameResponse) {};
+}
