@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { GRPCContext, GRPCProvider } from './context/GRPCContext';
 
 ReactDOM.render(
+  <GRPCProvider>
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </GRPCProvider>,
   document.getElementById('root')
 );
 

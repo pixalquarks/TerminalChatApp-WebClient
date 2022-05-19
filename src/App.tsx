@@ -2,6 +2,7 @@ import React from "react";
 import './App.css';
 
 import { Header, Chat, UserList, Footer, Login } from "./components";
+import { GRPCContext } from "./context/GRPCContext";
 
 
 const App = () => {

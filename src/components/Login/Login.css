@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,8 +29,8 @@
 }
 
 .card {
+  aspect-ratio: 5/3;
   width: 500px;
-  height: 300px;
   background-color: #a099ff;
   background-image: radial-gradient(
       at 83% 67%,
@@ -46,6 +47,19 @@
 }
 
 .header-login {
-  margin: 20px 0;
+  padding: 15px 0;
+  width: 500px;
   font-size: 2rem;
+  color: white;
+  border: 2px solid black;
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .card {
+    width: 340px;
+  }
+  .header-login {
+    width: 340px;
+  }
 }

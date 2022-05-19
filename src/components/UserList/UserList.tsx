@@ -1,4 +1,8 @@
-import React , {useState, useRef} from 'react';
+import React , {useState, useContext} from 'react';
+import { BiChevronRightCircle, BiChevronLeftCircle} from 'react-icons/bi';
+import { GRPCContext } from '../../context/GRPCContext';
+import { Client } from '../../proto/chat_pb';
+import { GRPCContextType } from '../../react-app-env';
 import './UserList.css';
 
 
@@ -11,18 +15,20 @@ const UserList = () => {
         setOpen((prev) => !prev);
     }
 
+    const { members } = useContext(GRPCContext) as GRPCContextType;
+
     return (
         <>
             <div>
         <aside className={`${open? "swipe-from-left": ""}`}>
             <div className="header">Users</div>
             <ul className="list">
-                {dummyUsers.map((user, index) => (
-                    <li className="user-item" key={index}>{user}</li>
+                {members.map((user: Client, index: number) => (
+                    <li className="user-item" key={index}>{user.getName()}</li>
                 ))}
             </ul>
         </aside>
-            <div className='handle' onClick={e => onSideBarClick(e)}></div>
+            <div className='handle' onClick={e => onSideBarClick(e)}> {open ? <BiChevronLeftCircle size={32} className={`slide-window-icon ${open ? "slide-to-right" : ""}`}/> : <BiChevronRightCircle size={32} className={`slide-window-icon ${open ? "slide-to-right" : ""}`}/> } </div>
             </div>
         </>
     )

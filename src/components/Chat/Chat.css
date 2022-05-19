@@ -39,7 +39,7 @@ main {
   height: 44px;
   width: 44px;
   position: absolute;
-  top: 11px;
+  top: 14px;
   right: -10px;
 }
 
@@ -94,6 +94,11 @@ main {
 
 .chat-item-msg {
   font-size: 1.5rem;
+}
+
+.transition-slide-left {
+  transform: translateX(200px);
+  transition: transform 0.5s;
 }
 
 @media screen and (max-width: 500px) {
