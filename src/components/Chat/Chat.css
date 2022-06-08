@@ -7,46 +7,46 @@ main {
   align-items: center;
   position: relative;
   overflow: hidden;
-  background-color: rgb(24, 47, 54);
 }
 
 .form-container {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 10px 0px;
-  width: 90%;
+  padding: 10px 60px;
+  width: 100%;
 }
 
 .form-container form input {
-  background-color: green;
+  background: transparent;
+  border: 0.1px solid var(--white);
+  color: var(--white);
   width: 100%;
   height: 44px;
   margin: 0 8px;
   border-radius: 10px;
-  color: white;
   font-size: 1.7rem;
   font-weight: 500;
-  padding: 20px;
+  padding: 20px 60px 20px 20px;
 }
 
 .form-container form button {
   border: 1px solid black;
   background: none;
   border: none;
-  color: red;
+  color: var(--primary-low);
   font-size: 2rem;
-  height: 44px;
+  aspect-ratio: 1/1;
   width: 44px;
   position: absolute;
   top: 14px;
-  right: -10px;
+  right: 55px;
 }
 
 .form-container form button :hover {
   cursor: pointer;
   background: fixed;
-  background-color: rgba(78, 151, 215, 0.603);
+  transform: scale(1.05);
 }
 
 .chats {
@@ -71,29 +71,30 @@ main {
 
 .chats ul li {
   margin: 6px 0;
-  border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 20px;
   text-align: center;
 }
 
 .chat-item {
   color: white;
-  padding: 5px 10px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   min-width: 100px;
-  background-color: rgba(44, 40, 40, 0.548);
+  background-color: #4e38a3;
+  font-color: var(--white);
+  font-family: var(--primary-font-family);
 }
 
 .chat-item-name {
-  font-size: 0.8rem;
   margin-bottom: 6px;
-  font-weight: 700;
+  font-weight: thin;
 }
 
 .chat-item-msg {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .transition-slide-left {

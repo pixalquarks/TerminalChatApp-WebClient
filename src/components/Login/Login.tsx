@@ -4,7 +4,6 @@ import Address from '../Address';
 import Username from '../Username';
 import { GRPCContext } from '../../context/GRPCContext';
 import { GRPCContextType } from '../../react-app-env';
-import { on } from 'process';
 
 const Login = () => {
     const [address, setAddress] = useState(true);

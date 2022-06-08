@@ -39,12 +39,12 @@ const Chat = () => {
     }, [messages])
 
     const onChatEnter = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (chat == "") return;
         setSlide(slideAnimName);
         setTimeout(() => {
             setSlide('');
         }, transitionDuration)
-        e.preventDefault();
-        if (chat == "") return;
         await sendMessage(chat);
         setChat('');
     }

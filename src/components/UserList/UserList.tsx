@@ -6,7 +6,7 @@ import { GRPCContextType } from '../../react-app-env';
 import './UserList.css';
 
 
-const dummyUsers = ["John", "Jane", "Jack"];
+const dummyUsers = ["John", "Jane", "Jack", "John", "Jane", "Jack", "John", "Jane", "Jack", "John", "Jane", "Jack"];
 
 const UserList = () => {
     const [open, setOpen] = useState(false);
@@ -21,10 +21,13 @@ const UserList = () => {
         <>
             <div>
         <aside className={`${open? "swipe-from-left": ""}`}>
-            <div className="header">Users</div>
+            <div className="header">Chat Members</div>
             <ul className="list">
-                {members.map((user: Client, index: number) => (
+                {/* {members.map((user: Client, index: number) => (
                     <li className="user-item" key={index}>{user.getName()}</li>
+                ))} */}
+                {dummyUsers.map((user: string, index: number) => (
+                    <li className="user-item" key={index}>{user}</li>
                 ))}
             </ul>
         </aside>
