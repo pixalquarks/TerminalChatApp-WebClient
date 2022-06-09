@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { isEmptyBindingElement } from 'typescript';
 import { ServicesClient } from '../proto/ChatServiceClientPb';
 import { Client, ClientName, FromClient, FromServer, StreamRequest } from '../proto/chat_pb';
 import { ClientHandle, message } from '../react-app-env';
@@ -14,7 +13,7 @@ const client: ClientHandle = {
     clientName:  "",
     roomName: "",
     delay:  -1,
-    uid:  -2,}
+    uid:  "",}
 
 
 interface Props {
@@ -46,7 +45,10 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
             console.log("Username taken");
             return;
         }
+        console.log("Username available");
+        console.log("Creating Client");
         const resp = await client.client.createClient(clientName, {});
+        console.log("response received");
         if (resp.getCreated()) {
             console.log("Client created");
             client.clientName = username;
@@ -68,8 +70,11 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
         const newMsg = new FromClient();
         newMsg.setBody(message);
         newMsg.setId(client.uid);
+        const t = Math.trunc(Date.now() / 1000);
+        newMsg.setTimestamp(t)
+        console.log(newMsg);
         await client.client.sendMessage(newMsg, {});
-        setMessages((prev) => [...prev, {name: client.clientName, body: message}]);
+        setMessages((prev) => [...prev, {name: client.clientName, body: message, timeStamp: new Date(t * 1000)}]);
     }
 
     const onMessageReceive = (message: FromServer) => {
@@ -78,7 +83,7 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
                 await updateMembersList(setMembers);
             })();
         }
-        setMessages((prev) => [...prev, {name: message.getName(), body: message.getBody()}]);
+        setMessages((prev) => [...prev, {name: message.getName(), body: message.getBody(), timeStamp: new Date(message.getTimestamp())}]);
     }
 
     const log = () => {

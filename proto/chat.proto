@@ -7,18 +7,20 @@ option go_package = "./chatserver";
 import "google/protobuf/empty.proto";
 
 message FromClient {
-  int32 id = 2;
+  string id = 2;
   string body = 3;
+  int64 timestamp = 4;
 }
 
 message FromServer {
   string name = 1;
   string body = 2;
+  int64 timestamp = 3;
 }
 
 message Client {
   string name = 1;
-  int32 id = 2;
+  string id = 2;
 }
 
 message Clients {
@@ -29,7 +31,7 @@ message Clients {
 message Command {
   uint32 type = 1;
   string value = 2;
-  int32 id = 3;
+  string id = 3;
 }
 
 message ClientName {
@@ -38,7 +40,7 @@ message ClientName {
 
 message CreateClientResponse {
   bool created = 1;
-  int32 id = 2;
+  string id = 2;
   string roomName = 3;
   uint32 delay = 4;
 }
@@ -48,7 +50,7 @@ message Exists {
 }
 
 message StreamRequest {
-  int32 id = 1;
+  string id = 1;
 }
 
 service Services {

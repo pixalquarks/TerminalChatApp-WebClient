@@ -13,6 +13,11 @@ aside {
   min-width: 200px;
 }
 
+.avatar {
+  aspect-ratio: 1/1;
+  width: 80px;
+}
+
 .header {
   font-size: 2rem;
   font-weight: bold;

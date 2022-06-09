@@ -247,8 +247,9 @@ proto.pixalquarks.terminalChatServer.FromClient.prototype.toObject = function(op
  */
 proto.pixalquarks.terminalChatServer.FromClient.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    body: jspb.Message.getFieldWithDefault(msg, 3, "")
+    id: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    body: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    timestamp: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -286,12 +287,16 @@ proto.pixalquarks.terminalChatServer.FromClient.deserializeBinaryFromReader = fu
     var field = reader.getFieldNumber();
     switch (field) {
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setBody(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTimestamp(value);
       break;
     default:
       reader.skipField();
@@ -323,8 +328,8 @@ proto.pixalquarks.terminalChatServer.FromClient.prototype.serializeBinary = func
 proto.pixalquarks.terminalChatServer.FromClient.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
@@ -336,24 +341,31 @@ proto.pixalquarks.terminalChatServer.FromClient.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getTimestamp();
+  if (f !== 0) {
+    writer.writeInt64(
+      4,
+      f
+    );
+  }
 };
 
 
 /**
- * optional int32 id = 2;
- * @return {number}
+ * optional string id = 2;
+ * @return {string}
  */
 proto.pixalquarks.terminalChatServer.FromClient.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.pixalquarks.terminalChatServer.FromClient} returns this
  */
 proto.pixalquarks.terminalChatServer.FromClient.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -372,6 +384,24 @@ proto.pixalquarks.terminalChatServer.FromClient.prototype.getBody = function() {
  */
 proto.pixalquarks.terminalChatServer.FromClient.prototype.setBody = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional int64 timestamp = 4;
+ * @return {number}
+ */
+proto.pixalquarks.terminalChatServer.FromClient.prototype.getTimestamp = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.pixalquarks.terminalChatServer.FromClient} returns this
+ */
+proto.pixalquarks.terminalChatServer.FromClient.prototype.setTimestamp = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -408,7 +438,8 @@ proto.pixalquarks.terminalChatServer.FromServer.prototype.toObject = function(op
 proto.pixalquarks.terminalChatServer.FromServer.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    body: jspb.Message.getFieldWithDefault(msg, 2, "")
+    body: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    timestamp: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -453,6 +484,10 @@ proto.pixalquarks.terminalChatServer.FromServer.deserializeBinaryFromReader = fu
       var value = /** @type {string} */ (reader.readString());
       msg.setBody(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTimestamp(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -496,6 +531,13 @@ proto.pixalquarks.terminalChatServer.FromServer.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getTimestamp();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -535,6 +577,24 @@ proto.pixalquarks.terminalChatServer.FromServer.prototype.setBody = function(val
 };
 
 
+/**
+ * optional int64 timestamp = 3;
+ * @return {number}
+ */
+proto.pixalquarks.terminalChatServer.FromServer.prototype.getTimestamp = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.pixalquarks.terminalChatServer.FromServer} returns this
+ */
+proto.pixalquarks.terminalChatServer.FromServer.prototype.setTimestamp = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
 
 
 
@@ -568,7 +628,7 @@ proto.pixalquarks.terminalChatServer.Client.prototype.toObject = function(opt_in
 proto.pixalquarks.terminalChatServer.Client.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -610,7 +670,7 @@ proto.pixalquarks.terminalChatServer.Client.deserializeBinaryFromReader = functi
       msg.setName(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -650,8 +710,8 @@ proto.pixalquarks.terminalChatServer.Client.serializeBinaryToWriter = function(m
     );
   }
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
@@ -678,20 +738,20 @@ proto.pixalquarks.terminalChatServer.Client.prototype.setName = function(value) 
 
 
 /**
- * optional int32 id = 2;
- * @return {number}
+ * optional string id = 2;
+ * @return {string}
  */
 proto.pixalquarks.terminalChatServer.Client.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.pixalquarks.terminalChatServer.Client} returns this
  */
 proto.pixalquarks.terminalChatServer.Client.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -919,7 +979,7 @@ proto.pixalquarks.terminalChatServer.Command.toObject = function(includeInstance
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
     value: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -965,7 +1025,7 @@ proto.pixalquarks.terminalChatServer.Command.deserializeBinaryFromReader = funct
       msg.setValue(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -1012,8 +1072,8 @@ proto.pixalquarks.terminalChatServer.Command.serializeBinaryToWriter = function(
     );
   }
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
+  if (f.length > 0) {
+    writer.writeString(
       3,
       f
     );
@@ -1058,20 +1118,20 @@ proto.pixalquarks.terminalChatServer.Command.prototype.setValue = function(value
 
 
 /**
- * optional int32 id = 3;
- * @return {number}
+ * optional string id = 3;
+ * @return {string}
  */
 proto.pixalquarks.terminalChatServer.Command.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.pixalquarks.terminalChatServer.Command} returns this
  */
 proto.pixalquarks.terminalChatServer.Command.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1238,7 +1298,7 @@ proto.pixalquarks.terminalChatServer.CreateClientResponse.prototype.toObject = f
 proto.pixalquarks.terminalChatServer.CreateClientResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     created: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    id: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    id: jspb.Message.getFieldWithDefault(msg, 2, ""),
     roomname: jspb.Message.getFieldWithDefault(msg, 3, ""),
     delay: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
@@ -1282,7 +1342,7 @@ proto.pixalquarks.terminalChatServer.CreateClientResponse.deserializeBinaryFromR
       msg.setCreated(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     case 3:
@@ -1330,8 +1390,8 @@ proto.pixalquarks.terminalChatServer.CreateClientResponse.serializeBinaryToWrite
     );
   }
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
@@ -1372,20 +1432,20 @@ proto.pixalquarks.terminalChatServer.CreateClientResponse.prototype.setCreated =
 
 
 /**
- * optional int32 id = 2;
- * @return {number}
+ * optional string id = 2;
+ * @return {string}
  */
 proto.pixalquarks.terminalChatServer.CreateClientResponse.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.pixalquarks.terminalChatServer.CreateClientResponse} returns this
  */
 proto.pixalquarks.terminalChatServer.CreateClientResponse.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1587,7 +1647,7 @@ proto.pixalquarks.terminalChatServer.StreamRequest.prototype.toObject = function
  */
 proto.pixalquarks.terminalChatServer.StreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1625,7 +1685,7 @@ proto.pixalquarks.terminalChatServer.StreamRequest.deserializeBinaryFromReader =
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -1658,8 +1718,8 @@ proto.pixalquarks.terminalChatServer.StreamRequest.prototype.serializeBinary = f
 proto.pixalquarks.terminalChatServer.StreamRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -1668,20 +1728,20 @@ proto.pixalquarks.terminalChatServer.StreamRequest.serializeBinaryToWriter = fun
 
 
 /**
- * optional int32 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.pixalquarks.terminalChatServer.StreamRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.pixalquarks.terminalChatServer.StreamRequest} returns this
  */
 proto.pixalquarks.terminalChatServer.StreamRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

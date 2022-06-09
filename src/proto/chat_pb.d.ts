@@ -4,11 +4,14 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 
 
 export class FromClient extends jspb.Message {
-  getId(): number;
-  setId(value: number): FromClient;
+  getId(): string;
+  setId(value: string): FromClient;
 
   getBody(): string;
   setBody(value: string): FromClient;
+
+  getTimestamp(): number;
+  setTimestamp(value: number): FromClient;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FromClient.AsObject;
@@ -20,8 +23,9 @@ export class FromClient extends jspb.Message {
 
 export namespace FromClient {
   export type AsObject = {
-    id: number,
+    id: string,
     body: string,
+    timestamp: number,
   }
 }
 
@@ -31,6 +35,9 @@ export class FromServer extends jspb.Message {
 
   getBody(): string;
   setBody(value: string): FromServer;
+
+  getTimestamp(): number;
+  setTimestamp(value: number): FromServer;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FromServer.AsObject;
@@ -44,6 +51,7 @@ export namespace FromServer {
   export type AsObject = {
     name: string,
     body: string,
+    timestamp: number,
   }
 }
 
@@ -51,8 +59,8 @@ export class Client extends jspb.Message {
   getName(): string;
   setName(value: string): Client;
 
-  getId(): number;
-  setId(value: number): Client;
+  getId(): string;
+  setId(value: string): Client;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Client.AsObject;
@@ -65,7 +73,7 @@ export class Client extends jspb.Message {
 export namespace Client {
   export type AsObject = {
     name: string,
-    id: number,
+    id: string,
   }
 }
 
@@ -100,8 +108,8 @@ export class Command extends jspb.Message {
   getValue(): string;
   setValue(value: string): Command;
 
-  getId(): number;
-  setId(value: number): Command;
+  getId(): string;
+  setId(value: string): Command;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Command.AsObject;
@@ -115,7 +123,7 @@ export namespace Command {
   export type AsObject = {
     type: number,
     value: string,
-    id: number,
+    id: string,
   }
 }
 
@@ -141,8 +149,8 @@ export class CreateClientResponse extends jspb.Message {
   getCreated(): boolean;
   setCreated(value: boolean): CreateClientResponse;
 
-  getId(): number;
-  setId(value: number): CreateClientResponse;
+  getId(): string;
+  setId(value: string): CreateClientResponse;
 
   getRoomname(): string;
   setRoomname(value: string): CreateClientResponse;
@@ -161,7 +169,7 @@ export class CreateClientResponse extends jspb.Message {
 export namespace CreateClientResponse {
   export type AsObject = {
     created: boolean,
-    id: number,
+    id: string,
     roomname: string,
     delay: number,
   }
@@ -186,8 +194,8 @@ export namespace Exists {
 }
 
 export class StreamRequest extends jspb.Message {
-  getId(): number;
-  setId(value: number): StreamRequest;
+  getId(): string;
+  setId(value: string): StreamRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StreamRequest.AsObject;
@@ -199,7 +207,7 @@ export class StreamRequest extends jspb.Message {
 
 export namespace StreamRequest {
   export type AsObject = {
-    id: number,
+    id: string,
   }
 }
 

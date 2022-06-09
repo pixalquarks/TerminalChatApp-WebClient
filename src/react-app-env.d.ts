@@ -16,10 +16,11 @@ type ClientHandle = {
     clientName: string
     roomName:   string
     delay:      number
-    uid:        number
+    uid:        string
 }
 
 type message = {
     name: string
     body: string
+    timeStamp: Date
 }

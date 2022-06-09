@@ -17,12 +17,14 @@
 
 body {
   overflow: hidden;
-  background: rgb(18, 14, 24);
+  background: rgb(19, 15, 26);
   background: linear-gradient(
-    159deg,
-    rgba(18, 14, 24, 1) 0%,
-    rgba(10, 6, 59, 1) 42%,
-    rgba(24, 18, 38, 1) 100%
+    238deg,
+    rgba(19, 15, 26, 1) 0%,
+    rgba(16, 15, 24, 1) 25%,
+    rgba(5, 5, 9, 1) 51%,
+    rgba(16, 15, 24, 1) 76%,
+    rgba(19, 15, 26, 1) 100%
   );
 }
 

@@ -71,20 +71,36 @@ main {
 
 .chats ul li {
   margin: 6px 0;
-  border-radius: 20px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .chat-item {
-  color: white;
-  padding: 10px 20px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.chat-item-content {
+  padding: 12px 20px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  min-width: 100px;
+  justify-content: space-around;
+  min-width: 150px;
   background-color: #4e38a3;
-  font-color: var(--white);
+  color: var(--white);
   font-family: var(--primary-font-family);
+}
+
+.chat-item-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-item: center;
+}
+
+.chat-item-footer {
+  margin: 0;
 }
 
 .chat-item-name {
@@ -95,6 +111,11 @@ main {
 .chat-item-msg {
   font-size: 1.2rem;
   font-weight: 400;
+}
+
+.chat-item-ts {
+  font-size: 0.8rem;
+  text-align: right;
 }
 
 .transition-slide-left {
