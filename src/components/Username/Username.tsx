@@ -1,20 +1,23 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import { GRPCContext } from '../../context/GRPCContext';
+import { GRPCContextType } from '../../react-app-env';
 import './Username.css';
 
-type UsernameProp = {
-  onUsernameSubmit: (address: string) => void,
-}
+const Username: React.FC= () => {
 
-const Username: React.FC<UsernameProp> = ({onUsernameSubmit}) => {
+  const {onUsernameEnter} = useContext(GRPCContext) as GRPCContextType;
 
   const [input, setInput] = useState('');
 
-  const onAddSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onAddSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onUsernameSubmit(input);
+    console.log("username: ", input);
+    if (input == "") return;
+    await onUsernameEnter(input);
+    setInput("");
   }
 
-  const onAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   }
 
@@ -23,7 +26,7 @@ const Username: React.FC<UsernameProp> = ({onUsernameSubmit}) => {
         <form onSubmit={onAddSubmit}>
             <div className='form-group-Username'>
                 <label htmlFor='IP' className="label">Username</label>
-                <input type="text" name="ip" id="IP" value={input} onChange={(e) => {onAddressChange(e)}}/>
+                <input type="text" name="ip" id="IP" value={input} onChange={(e) => {onUsernameChange(e)}}/>
             </div>
             <button type='submit' className='btn-Username'>Submit</button>
         </form>

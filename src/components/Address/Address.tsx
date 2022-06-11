@@ -7,15 +7,18 @@ type AddressProp = {
   onAddressSubmit: (address: string) => void,
 }
 
-const Address: React.FC<AddressProp> = ({onAddressSubmit}) => {
+const Address: React.FC = () => {
 
-  const {onAddressEnter, onUsernameEnter} = useContext(GRPCContext) as GRPCContextType;
+  const {onAddressEnter} = useContext(GRPCContext) as GRPCContextType;
 
   const [input, setInput] = useState('');
 
   const onAddSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onAddressSubmit(input);
+    console.log("address: ", input);
+    if (input == "") return;
+    onAddressEnter(input);
+    setInput("");
   }
 
   const onAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 
-import { Header, Chat, UserList, Footer, Login } from "./components";
+import { Header, Chat, UserList, Footer, Login, Error } from "./components";
 import { GRPCContext } from "./context/GRPCContext";
 
 

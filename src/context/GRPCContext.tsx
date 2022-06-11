@@ -33,16 +33,20 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
     const [members, setMembers] = useState([] as Client[]);
     const [err, setErr] = useState(false);
 
-    const onAddressEnter = (address: string) => {
+    const onAddressEnter = (input: string) => {
         if (client.client != null) return;
-        address = "http://" + address;
-        client.client = new ServicesClient(address);
+        setAddress(input);
+        const addr = "http://" + input;
+        console.log(addr);
+        client.client = new ServicesClient(addr);
     }
 
-    const onUsernameEnter = async (username: string) => {
+    const onUsernameEnter = async (input: string) => {
         if (!client.client) return;
+        setUsername(input);
+        console.log(address, username, input);
         const clientName = new ClientName();
-        clientName.setName(username);
+        clientName.setName(input);
         const res = await client?.client.verifyName(clientName, {});
         if (res?.getExists()) {
             console.log("Username taken");
@@ -54,7 +58,7 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
         console.log("response received");
         if (resp.getCreated()) {
             console.log("Client created");
-            client.clientName = username;
+            client.clientName = input;
             client.uid = resp.getId();
             client.roomName = resp.getRoomname();
             client.delay = resp.getDelay();
