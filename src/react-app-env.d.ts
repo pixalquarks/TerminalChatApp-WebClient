@@ -5,6 +5,10 @@ import { ServicesClient } from "./proto/ChatServiceClientPb"
 type GRPCContextType = {
     messages: message[]
     members: Client[]
+    address: string
+    setAddress: (address: string) => void
+    username: string
+    setUsername: (username: string) => void
     onAddressEnter: (address: string) => void
     onUsernameEnter: (username: string) => Promise<Void>
     sendMessage: (message: string) => Promise<Void>

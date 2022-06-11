@@ -23,7 +23,7 @@ interface AvatarProps {
 
 const Avatar:React.FC<AvatarProps> = (props: AvatarProps) => {
     const generateAvatar = (name: string) => {
-        console.log(name);
+        // console.log(name);
         const avatar = createAvatar(style, {
             seed: name,
             dataUri: true,

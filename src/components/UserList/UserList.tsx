@@ -16,7 +16,6 @@ interface AvatarProps {
 
 const Avatar:React.FC<AvatarProps> = (props: AvatarProps) => {
     const generateAvatar = (name: string) => {
-        console.log(name);
         const avatar = createAvatar(style, {
             seed: name,
             dataUri: true,
@@ -53,13 +52,10 @@ const UserList = () => {
         <>
             <div>
         <aside className={`${open? "swipe-from-left": ""}`}>
-            <div className="header">Chat Members</div>
+            <div className="header">Chat Members : {members.length} </div>
             <ul className="list">
-                {/* {members.map((user: Client, index: number) => (
-                    <li className="user-item" key={index}>{user.getName()}</li>
-                ))} */}
-                {dummyUsers.map((user: string, index: number) => (
-                    <li className="user-item" key={index}><Avatar name={user} /> {user}</li>
+                {members.map((user: Client, index: number) => (
+                    <li className="user-item" key={user.getId()}><Avatar name={user.getName()} /> {user.getName()}</li>
                 ))}
             </ul>
         </aside>

@@ -27,8 +27,11 @@ interface Empty {
 
 
 export const GRPCProvider: React.FC<Props> = ({children}) => {
+    const [address, setAddress] = useState("");
+    const [username, setUsername] = useState("");
     const [messages, setMessages] = useState([] as message[]);
     const [members, setMembers] = useState([] as Client[]);
+    const [err, setErr] = useState(false);
 
     const onAddressEnter = (address: string) => {
         if (client.client != null) return;
@@ -62,6 +65,8 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
 
         client.stream = await client.client.chatService(streamRequest);
         client.stream.on('data', (data: FromServer) => {onMessageReceive(data)});
+        client.stream.on('end', () => {console.log("Stream ended")});
+        client.stream.on('error', (err: Error) => {console.log("Stream error", err); setErr(true)});
         await updateMembersList(setMembers);
     }
 
@@ -71,6 +76,7 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
         newMsg.setBody(message);
         newMsg.setId(client.uid);
         const t = Math.trunc(Date.now() / 1000);
+        console.log(new Date(t));
         newMsg.setTimestamp(t)
         console.log(newMsg);
         await client.client.sendMessage(newMsg, {});
@@ -83,7 +89,7 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
                 await updateMembersList(setMembers);
             })();
         }
-        setMessages((prev) => [...prev, {name: message.getName(), body: message.getBody(), timeStamp: new Date(message.getTimestamp())}]);
+        setMessages((prev) => [...prev, {name: message.getName(), body: message.getBody(), timeStamp: new Date(message.getTimestamp() * 1000)}]);
     }
 
     const log = () => {
@@ -94,6 +100,10 @@ export const GRPCProvider: React.FC<Props> = ({children}) => {
         <GRPCContext.Provider value={{ 
             messages,
             members,
+            address,
+            setAddress,
+            username,
+            setUsername,
             onAddressEnter, 
             onUsernameEnter, 
             sendMessage}}>

@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import { GRPCContext } from '../../context/GRPCContext';
+import { GRPCContextType } from '../../react-app-env';
 import './Address.css';
 
 type AddressProp = {
@@ -6,6 +8,8 @@ type AddressProp = {
 }
 
 const Address: React.FC<AddressProp> = ({onAddressSubmit}) => {
+
+  const {onAddressEnter, onUsernameEnter} = useContext(GRPCContext) as GRPCContextType;
 
   const [input, setInput] = useState('');
 
