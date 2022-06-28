@@ -54,6 +54,7 @@ message StreamRequest {
 }
 
 service Services {
+  rpc PingServer(google.protobuf.Empty) returns (google.protobuf.Empty);
   rpc ChatService(StreamRequest) returns (stream FromServer) {};
   rpc SendMessage(FromClient) returns (google.protobuf.Empty) {};
   rpc CommandService (Command) returns (google.protobuf.Empty) {};
