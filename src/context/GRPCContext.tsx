@@ -32,7 +32,7 @@ export const GRPCProvider: React.FC<Props> = ({ children }) => {
   const [username, setUsername] = useState("");
   const [messages, setMessages] = useState([] as message[]);
   const [members, setMembers] = useState([] as Client[]);
-  const [err, setErr] = useState(true);
+  const [err, setErr] = useState(false);
 
   // TODO: unable to catch error while connecting to server
   const onAddressEnter = async (input: string) => {
